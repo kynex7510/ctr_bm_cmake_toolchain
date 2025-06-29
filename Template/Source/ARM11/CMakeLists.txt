@@ -1,7 +1,7 @@
-# We are compiling for ARM11.
-include(BM/ARM11)
+# We are linking with libn3ds for ARM11.
+include(BM/N3DS11)
 
-# Add a new executable and link to libn3ds for ARM9.
+# Add a new executable.
 add_executable(MyApp11 Main.c)
 target_link_libraries(MyApp11 PRIVATE n3ds11)
 
