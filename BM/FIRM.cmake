@@ -35,7 +35,7 @@ function(make_firm OUTPUT_NAME)
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${OUTPUT_NAME}.firm TYPE BIN)
 endfunction()
 
-function(add_firm_binary TARGET_NAME OUTPUT_NAME)
+function(add_firm_binary OUTPUT_NAME TARGET_NAME)
     # Add binary target.
     add_custom_target(${OUTPUT_NAME} ALL
         COMMAND ${DKP_OBJCOPY} -O binary $<TARGET_FILE:${TARGET_NAME}> ${OUTPUT_NAME}.bin

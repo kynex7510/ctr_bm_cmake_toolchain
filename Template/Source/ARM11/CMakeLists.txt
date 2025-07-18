@@ -9,4 +9,4 @@ target_link_libraries(MyApp11 PRIVATE n3ds11)
 bm_target_linker_file(MyApp11 ${CTR_BM_TOOLCHAIN_ROOT}/Linker/Default11.ld)
 
 # Generate ARM11 binary data.
-add_firm_binary(MyApp11 MyApp11_bin)
+add_firm_binary(MyApp11_bin MyApp11)
