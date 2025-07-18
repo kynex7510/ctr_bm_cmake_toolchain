@@ -4,10 +4,9 @@
 #include <arm11/fmt.h>
 #include <arm11/drivers/hid.h>
 
-#include <stdio.h>
-
 int main(void) {
     GFX_init(GFX_BGR565, GFX_BGR565, GFX_TOP_2D);
+    GFX_setLcdLuminance(80);
     consoleInit(GFX_LCD_TOP, NULL);
 
     ee_printf("Hello World!\n");
