@@ -5,9 +5,6 @@ set(CMAKE_C_STANDARD 23)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 project(MyApp C CXX ASM)
 
-# Include FIRM building support.
-include(BM/FIRM)
-
 # Compile app code.
 add_subdirectory(Source)
 
@@ -24,7 +21,7 @@ set(ARM11_ENTRYPOINT 0x1FF89034)
 set(ARM11_COPY_METHOD XDMA)
 
 # Make FIRM.
-make_firm(MyApp
+ctr_bm_make_firm(MyApp
     ARM9 ${ARM9_TARGET} ${ARM9_LOAD_ADDRESS} ${ARM9_ENTRYPOINT} ${ARM9_COPY_METHOD}
     ARM11 ${ARM11_TARGET} ${ARM11_LOAD_ADDRESS} ${ARM11_ENTRYPOINT} ${ARM11_COPY_METHOD}
 )

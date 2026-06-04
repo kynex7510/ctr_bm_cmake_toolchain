@@ -1,30 +1,35 @@
-include(BM/_N3DSChecks)
-include(BM/ARM9)
+include(${CTR_BM_TOOLCHAIN_ROOT}/BM/_N3DSChecks.cmake)
 
-set(LIBN3DS_SOURCE_PATHS
-    ${LIBN3DS_ROOT}/source
-    ${LIBN3DS_ROOT}/source/drivers/mmc
-    ${LIBN3DS_ROOT}/source/drivers
-    ${LIBN3DS_ROOT}/source/arm9
-    ${LIBN3DS_ROOT}/source/arm9/drivers
-    ${LIBN3DS_ROOT}/libraries/fatfs/source
-    ${LIBN3DS_ROOT}/source/arm9/fatfs
-)
+if (NOT CTR_BM_ARM9)
+    message(FATAL_ERROR "n3ds9 must be included by an ARM9 project; maybe you forgot to call ctr_bm_enable_arm9()?")
+endif()
 
-set(LIBN3DS_SOURCES)
+if (NOT TARGET n3ds9)
+    set(LIBN3DS_SOURCE_PATHS
+        ${LIBN3DS_ROOT}/source
+        ${LIBN3DS_ROOT}/source/drivers/mmc
+        ${LIBN3DS_ROOT}/source/drivers
+        ${LIBN3DS_ROOT}/source/arm9
+        ${LIBN3DS_ROOT}/source/arm9/drivers
+        ${LIBN3DS_ROOT}/libraries/fatfs/source
+        ${LIBN3DS_ROOT}/source/arm9/fatfs
+    )
 
-foreach(DIR IN LISTS LIBN3DS_SOURCE_PATHS)
-    foreach(EXT c cpp s)
-        file(GLOB TMP_FILES CONFIGURE_DEPENDS "${DIR}/*.${EXT}")
-        list(APPEND LIBN3DS_SOURCES ${TMP_FILES})
+    set(LIBN3DS_SOURCES)
+
+    foreach(DIR IN LISTS LIBN3DS_SOURCE_PATHS)
+        foreach(EXT c cpp s)
+            file(GLOB TMP_FILES CONFIGURE_DEPENDS "${DIR}/*.${EXT}")
+            list(APPEND LIBN3DS_SOURCES ${TMP_FILES})
+        endforeach()
     endforeach()
-endforeach()
 
-set(LIBN3DS_INCLUDE_PATHS
-    ${LIBN3DS_ROOT}/include
-    ${LIBN3DS_ROOT}/libraries
-    ${LIBN3DS_ROOT}/source/arm9/fatfs
-)
+    set(LIBN3DS_INCLUDE_PATHS
+        ${LIBN3DS_ROOT}/include
+        ${LIBN3DS_ROOT}/libraries
+        ${LIBN3DS_ROOT}/source/arm9/fatfs
+    )
 
-add_library(n3ds9 OBJECT ${LIBN3DS_SOURCES})
-target_include_directories(n3ds9 PUBLIC ${LIBN3DS_INCLUDE_PATHS})
+    add_library(n3ds9 OBJECT ${LIBN3DS_SOURCES})
+    target_include_directories(n3ds9 PUBLIC ${LIBN3DS_INCLUDE_PATHS})
+endif()
