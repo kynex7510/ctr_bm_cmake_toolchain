@@ -3,7 +3,7 @@ function(ctr_add_shader_library target)
     cmake_parse_arguments(PARSE_ARGV 1 CTR_PICASSO "" "OUTPUT" "SOURCES")
 
     if (NOT CTR_PICASSO_EXE)
-        message(FATAL_ERROR "Could not find picasso: try installing picasso")
+        message(FATAL_ERROR "ctr_add_shader_library: Could not find picasso: try installing picasso")
     endif()
 
     if(DEFINED CTR_PICASSO_OUTPUT)
@@ -15,7 +15,7 @@ function(ctr_add_shader_library target)
     if(NOT DEFINED CTR_PICASSO_SOURCES AND DEFINED CTR_PICASSO_UNPARSED_ARGUMENTS)
         set(CTR_PICASSO_SOURCES "${CTR_PICASSO_UNPARSED_ARGUMENTS}")
     else()
-        message(FATAL_ERROR "ctr_add_shader_library: must provide at least one source code file")
+        message(FATAL_ERROR "ctr_add_shader_library: Must provide at least one source code file")
     endif()
 
     add_custom_command(
@@ -35,7 +35,7 @@ function(ctr_add_graphics_target target kind)
     cmake_parse_arguments(PARSE_ARGV 2 CTR_TEX3DS "" "OUTPUT" "INPUTS;OPTIONS")
 
     if (NOT CTR_TEX3DS_EXE)
-        message(FATAL_ERROR "Could not find tex3ds: try installing tex3ds")
+        message(FATAL_ERROR "ctr_add_graphics_target: Could not find tex3ds, try installing tex3ds")
     endif()
 
     if(DEFINED CTR_TEX3DS_OUTPUT)
@@ -57,7 +57,7 @@ function(ctr_add_graphics_target target kind)
     elseif(kind STREQUAL "ATLAS")
         list(APPEND CTR_TEX3DS_ARGS "--atlas")
     else()
-        message(FATAL_ERROR "ctr_add_graphics_target: invalid mode: ${kind}")
+        message(FATAL_ERROR "ctr_add_graphics_target: invalid mode ${kind}")
     endif()
 
     list(LENGTH CTR_TEX3DS_INPUTS numinputs)
