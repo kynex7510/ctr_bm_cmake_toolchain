@@ -43,15 +43,15 @@ set(CTR_BM_ARM9_LINKER_FLAGS "${CTR_BM_ARM9_FLAGS} -Wl,-d -Wl,--use-blx -Wl,--gc
 set(CTR_BM_ARM11_LINKER_FLAGS "${CTR_BM_ARM11_FLAGS} -Wl,-d -Wl,--use-blx -Wl,--gc-sections -nostartfiles")
 
 # Include FIRM stuff.
-include(${CTR_BM_TOOLCHAIN_ROOT}/BM/FIRM.cmake)
+include(${CTR_BM_TOOLCHAIN_ROOT}/Impl/_FIRM.cmake)
 
 # Define wrappers.
 macro(ctr_bm_enable_arm9)
-    include(${CTR_BM_TOOLCHAIN_ROOT}/BM/ARM9.cmake)
+    include(${CTR_BM_TOOLCHAIN_ROOT}/Impl/_ARM9.cmake)
 endmacro()
 
 macro(ctr_bm_enable_arm11)
-    include(${CTR_BM_TOOLCHAIN_ROOT}/BM/ARM11.cmake)
+    include(${CTR_BM_TOOLCHAIN_ROOT}/Impl/_ARM11.cmake)
 endmacro()
 
 function(ctr_bm_link_libn3ds)
@@ -66,10 +66,10 @@ function(ctr_bm_link_libn3ds)
     endif()
 
     if (CTR_BM_ARM9)
-        include(${CTR_BM_TOOLCHAIN_ROOT}/BM/N3DS9.cmake)
+        include(${CTR_BM_TOOLCHAIN_ROOT}/Impl/_N3DS9.cmake)
         target_link_libraries(${ARGV0} ${N3DS_VISIBILITY} n3ds9)
     elseif(CTR_BM_ARM11)
-        include(${CTR_BM_TOOLCHAIN_ROOT}/BM/N3DS11.cmake)
+        include(${CTR_BM_TOOLCHAIN_ROOT}/Impl/_N3DS11.cmake)
         target_link_libraries(${ARGV0} ${N3DS_VISIBILITY} n3ds11)
     else()
         message(FATAL_ERROR "No target CPU specified, call ctr_bm_enable_arm9() or ctr_bm_enable_arm11() to use libn3ds")

@@ -1,4 +1,4 @@
-include(${CTR_BM_TOOLCHAIN_ROOT}/BM/_N3DSChecks.cmake)
+include(${CTR_BM_TOOLCHAIN_ROOT}/Impl/_N3DSChecks.cmake)
 
 if (NOT CTR_BM_ARM11)
     message(FATAL_ERROR "n3ds11 must be included by an ARM11 project; maybe you forgot to call ctr_bm_enable_arm11()?")

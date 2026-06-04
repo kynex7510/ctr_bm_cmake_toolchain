@@ -2,7 +2,7 @@ if (CTR_BM_ARM11)
     message(FATAL_ERROR "Attempted to enable ARM9 compilation with ARM11 already enabled")
 endif()
 
-include(${CTR_BM_TOOLCHAIN_ROOT}/BM/_DKA.cmake)
+include(${CTR_BM_TOOLCHAIN_ROOT}/Impl/_DKA.cmake)
 
 set(CMAKE_C_FLAGS "${CTR_BM_ARM9_FLAGS} -mword-relocations -ffunction-sections")
 set(CMAKE_CXX_FLAGS "${CTR_BM_ARM9_FLAGS} -fno-rtti -fno-exceptions -mword-relocations -ffunction-sections")
