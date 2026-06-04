@@ -30,6 +30,8 @@ include(${DEVKITPRO}/cmake/dkp-embedded-binary.cmake)
 find_program(CTR_PICASSO_EXE NAMES picasso HINTS "${DEVKITPRO}/tools/bin")
 find_program(CTR_TEX3DS_EXE NAMES tex3ds HINTS "${DEVKITPRO}/tools/bin")
 
+include(${CTR_BM_TOOLCHAIN_ROOT}/Impl/_DKA.cmake)
+
 # Set baremetal flag.
 set(CTR_BM ON)
 
